@@ -37,7 +37,9 @@ def detectLine(frame):
 
 
 def main():
-    cap = cv2.VideoCapture(1)  # Open the camera with ID 1
+    cv2.CAP_DSHOW = 700  # Windows-specific
+    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+  # Open the camera with ID 1
     cap.set(3, 640)  # Set frame width
     cap.set(4, 480)  # Set frame height
     while True:
@@ -47,7 +49,7 @@ def main():
             if ret:
                 detectLine(frame)  # Detect lines in the frame
 
-                time.sleep(0.005)  # Small delay
+                time.sleep(0.006)  # Small delay
 
                 if cv2.waitKey(1) & 0xFF == ord('q'):  # Exit on 'q' key
                     break
